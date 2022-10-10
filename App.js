@@ -12,16 +12,16 @@ function App() {
   const obj = {};
   const arr = [obj];
 
-  function hanldeFirstName() {
-    setFirstName(() => document.getElementById("firstname").value);
+  function hanldeFirstName(e) {
+    setFirstName(e.target.value);
   }
 
-  function handleLastName() {
-    setLastName(() => document.getElementById("lastname").value);
+  function handleLastName(e) {
+    setLastName(e.target.value);
   }
 
-  function handleAge() {
-    setAge(() => document.getElementById("age").value);
+  function handleAge(e) {
+    setAge(e.target.value);
   }
 
   function handleDropDown(e) {
@@ -33,7 +33,7 @@ function App() {
   }
 
   function handleAdress(e) {
-    setAddress(() => document.getElementById("textArea").value);
+    setAddress(e.target.value);
   }
 
   function handleClick() {

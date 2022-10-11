@@ -43,15 +43,26 @@ function App() {
   }
 
   function handleClick() {
-    if (firstName == null || firstName == "" || format.test(firstName)) {
-      alert("Name Can Not Be Blank!");
-    } else if (lastName == null || lastName == "" || format.test(lastName)) {
-      alert("LastName Can Not Be Blank!");
+    if (
+      firstName == null ||
+      firstName == "" ||
+      format.test(firstName) ||
+      firstName.length < 4
+    ) {
+      alert("Name is Not Valid!");
+    } else if (
+      lastName == null ||
+      lastName == "" ||
+      format.test(lastName) ||
+      lastName.length < 4
+    ) {
+      alert("LastName is Not Valid!");
     } else if (age < 0 || age == 0) {
       alert("Age is Always Positive!");
     } else if (address == null || address == "") {
       alert("Enter Address Where You Leave");
     } else {
+      console.log(firstName.length());
       obj.firstName = firstName;
       obj.lastName = lastName;
       obj.age = age;
@@ -128,7 +139,6 @@ function App() {
         <br />
         <br />
         <input type="button" value="Submit" onClick={handleClick} />
-
         <input type="button" value="Reset" onClick={handleReset} />
       </form>
     </div>

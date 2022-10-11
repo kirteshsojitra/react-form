@@ -87,8 +87,8 @@ function App() {
 
   return (
     <div className="App">
-      <form name="myform">
-        <lable>First Name: </lable>
+      <form className="myform">
+        <div>First Name: </div>
         <input
           type="text"
           id="firstname"
@@ -97,7 +97,7 @@ function App() {
         />
         <br />
         <br />
-        <lable>Last Name: </lable>
+        <div>Last Name: </div>
         <input
           type="text"
           id="lastname"
@@ -106,7 +106,7 @@ function App() {
         />
         <br />
         <br />
-        <lable>Age: </lable>
+        <div>Age: </div>
         <input
           type="number"
           id="age"
@@ -116,6 +116,8 @@ function App() {
         />
         <br />
         <br />
+        <div>Select Course: </div>
+
         <select id="dorpdown" value={selectSubject} onChange={handleDropDown}>
           <option value="Hindi">Hindi</option>
           <option value="English">English</option>
@@ -134,7 +136,7 @@ function App() {
         </div>
         <br />
         <br />
-        <lable>Address</lable>
+        <div>Address</div>
         <br />
         <textarea
           id="textArea"
@@ -143,7 +145,7 @@ function App() {
         ></textarea>
         <br />
         <br />
-        <lable>DOB</lable>
+        <div>DOB</div>
         <br />
         <input
           type="date"
@@ -153,8 +155,14 @@ function App() {
         />
         <br />
         <br />
-        <input type="button" value="Submit" onClick={handleClick} />
-        <input type="button" value="Reset" onClick={handleReset} />
+        <div className="buttons">
+          <div className="button">
+            <input type="button" value="Submit" onClick={handleClick} />
+          </div>
+          <div className="button">
+            <input type="button" value="Reset" onClick={handleReset} />
+          </div>
+        </div>
       </form>
     </div>
   );

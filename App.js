@@ -16,6 +16,7 @@ function App() {
   const lastNameRef = useRef();
   const ageRef = useRef();
   const addressRef = useRef();
+  var format = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
 
   function hanldeFirstName(e) {
     setFirstName(e.target.value);
@@ -42,9 +43,9 @@ function App() {
   }
 
   function handleClick() {
-    if (firstName == null || firstName == "") {
+    if (firstName == null || firstName == "" || format.test(firstName)) {
       alert("Name Can Not Be Blank!");
-    } else if (lastName == null || lastName == "") {
+    } else if (lastName == null || lastName == "" || format.test(lastName)) {
       alert("LastName Can Not Be Blank!");
     } else if (age < 0 || age == 0) {
       alert("Age is Always Positive!");
@@ -135,4 +136,3 @@ function App() {
 }
 
 export default App;
-

@@ -10,6 +10,7 @@ function App() {
   const [selectSubject, setSelectSubject] = useState("hindi");
   const [selectGender, setSelectGender] = useState("Male");
   const [address, setAddress] = useState("");
+  const [dob, setDob] = useState();
   const obj = {};
   const arr = [obj];
   const firstNameRef = useRef();
@@ -42,6 +43,10 @@ function App() {
     setAddress(e.target.value);
   }
 
+  function handleDob(e) {
+    setDob(e.target.value);
+  }
+
   function handleClick() {
     if (
       firstName == null ||
@@ -62,13 +67,13 @@ function App() {
     } else if (address == null || address == "") {
       alert("Enter Address Where You Leave");
     } else {
-      console.log(firstName.length());
       obj.firstName = firstName;
       obj.lastName = lastName;
       obj.age = age;
       obj.selectSubject = selectSubject;
       obj.selectGender = selectGender;
       obj.address = address;
+      obj.dob = dob;
       console.log(arr);
     }
   }
@@ -136,6 +141,16 @@ function App() {
           ref={addressRef}
           onChange={handleAdress}
         ></textarea>
+        <br />
+        <br />
+        <lable>DOB</lable>
+        <br />
+        <input
+          type="date"
+          onChange={handleDob}
+          min="2000-01-01"
+          max="2022-10-11"
+        />
         <br />
         <br />
         <input type="button" value="Submit" onClick={handleClick} />

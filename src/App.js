@@ -2,8 +2,10 @@ import React from "react";
 import {useState} from "react";
 import "./App.css";
 import {useRef} from "react";
+import {useNavigate} from "react-router-dom";
 
-function App() {
+const arr = [];
+function App(props) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [age, setAge] = useState(0);
@@ -11,12 +13,13 @@ function App() {
   const [selectGender, setSelectGender] = useState("Male");
   const [address, setAddress] = useState("");
   const [dob, setDob] = useState();
-  const obj = {};
-  const arr = [obj];
+  const [password, setPassword] = useState();
+  let navigate = useNavigate();
   const firstNameRef = useRef();
   const lastNameRef = useRef();
   const ageRef = useRef();
   const addressRef = useRef();
+  const loginRef = useRef();
   var format = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
 
   function hanldeFirstName(e) {
@@ -67,6 +70,7 @@ function App() {
     } else if (address == null || address == "") {
       alert("Enter Address Where You Leave");
     } else {
+      let obj = {};
       obj.firstName = firstName;
       obj.lastName = lastName;
       obj.age = age;
@@ -74,7 +78,10 @@ function App() {
       obj.selectGender = selectGender;
       obj.address = address;
       obj.dob = dob;
-      console.log(arr);
+      obj.password = password;
+      arr.push(obj);
+      loginRef.current.style.display = "block";
+      props.data(obj);
     }
   }
 
@@ -85,8 +92,12 @@ function App() {
     addressRef.current.value = "";
   }
 
+  function handlePasswordChange(e) {
+    setPassword(e.target.value);
+  }
   return (
     <div className="App">
+      <h1>Register Page</h1>
       <form className="myform">
         <div>First Name: </div>
         <input
@@ -135,9 +146,9 @@ function App() {
           <input type="radio" value="Other" name="gender" /> Other
         </div>
         <br />
-        <br />
+
         <div>Address</div>
-        <br />
+
         <textarea
           id="textArea"
           ref={addressRef}
@@ -146,7 +157,7 @@ function App() {
         <br />
         <br />
         <div>DOB</div>
-        <br />
+
         <input
           type="date"
           onChange={handleDob}
@@ -155,9 +166,20 @@ function App() {
         />
         <br />
         <br />
+        <div>Password</div>
+        <input type="password" onChange={handlePasswordChange} />
+        <br />
+        <br />
         <div className="buttons">
           <div className="button">
             <input type="button" value="Submit" onClick={handleClick} />
+          </div>
+          <div className="button login" ref={loginRef}>
+            <input
+              type="button"
+              value="Login"
+              onClick={() => navigate("/login")}
+            />
           </div>
           <div className="button">
             <input type="button" value="Reset" onClick={handleReset} />
